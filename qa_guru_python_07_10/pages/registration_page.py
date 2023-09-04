@@ -62,9 +62,9 @@ class RegistrationPage:
         self.gender(student.gender).click()
         self.phone_number.type(student.phone_number)
         self.date_of_birth_element.click()
-        self.date_of_birth_month(student.birth_month).click()
-        self.date_of_birth_year(student.birth_year).click()
-        self.date_of_birth_day(student.birth_day).click()
+        self.date_of_birth_month(student.date_of_birth.strftime('%B')).click()
+        self.date_of_birth_year(student.date_of_birth.strftime('%Y')).click()
+        self.date_of_birth_day(student.date_of_birth.strftime('%d')).click()
         self.subjects.type(student.subjects).press_tab()
         self.hobbies(student.hobbies).click()
         self.picture.set_value(resource_path(student.picture_path))
@@ -85,7 +85,7 @@ class RegistrationPage:
                 student.email,
                 student.gender.value,
                 student.phone_number,
-                f'{student.birth_day} {student.birth_month},{student.birth_year}',
+                f"{student.date_of_birth.strftime('%d')} {student.date_of_birth.strftime('%B')},{student.date_of_birth.strftime('%Y')}",
                 student.subjects,
                 student.hobbies.value,
                 student.picture_path,
