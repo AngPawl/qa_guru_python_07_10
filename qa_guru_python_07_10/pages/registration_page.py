@@ -11,7 +11,7 @@ class RegistrationPage:
         self.user_email = browser.element('#userEmail')
         self.gender = (
             lambda gender: browser.all('[name=gender]')
-            .element_by(have.value(gender))
+            .element_by(have.value(gender.value))
             .element('..')
         )
         self.phone_number = browser.element('#userNumber')
@@ -32,7 +32,7 @@ class RegistrationPage:
         self.subjects = browser.element('#subjectsInput')
         self.hobbies = lambda hobbies: browser.all(
             '[id^=hobbies][type=checkbox]+label'
-        ).element_by(have.exact_text(hobbies))
+        ).element_by(have.exact_text(hobbies.value))
         self.picture = browser.element('#uploadPicture')
         self.current_address = browser.element('#currentAddress')
         self.state = browser.element('#state')
@@ -83,11 +83,11 @@ class RegistrationPage:
             have.exact_texts(
                 f'{student.first_name} {student.last_name}',
                 student.email,
-                student.gender,
+                student.gender.value,
                 student.phone_number,
                 f'{student.birth_day} {student.birth_month},{student.birth_year}',
                 student.subjects,
-                student.hobbies,
+                student.hobbies.value,
                 student.picture_path,
                 student.address,
                 f'{student.state} {student.city}',
